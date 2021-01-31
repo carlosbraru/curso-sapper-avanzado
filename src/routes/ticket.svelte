@@ -39,13 +39,28 @@
     async function signWithGoogle () {
         try {
             const Provider = new firebase.auth.GoogleAuthProvider();
-            await auth.signInWithPopup(Provider);
+            await auth.signInWithPopup(Provider)
+                .then( (result) => {
+                    console.log("result: ", result);
+                    $session.photoURL = result.user.photoURL;
+                });
+            console.log("Provider, session: ", Provider, " ::: ", $session);
             $session.user = true;
             goto('./ticket');
 
         } catch (error) {
             console.error(error.message);
         }
+        /* try {
+            const Provider = new firebase.auth.GoogleAuthProvider();
+            await auth.signInWithPopup(Provider);
+            console.log("Provider, session: ", Provider, " ::: ", $session);
+            $session.user = true;
+            goto('./ticket');
+
+        } catch (error) {
+            console.error(error.message);
+        } */
     }
 </script>
 

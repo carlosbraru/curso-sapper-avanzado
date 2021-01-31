@@ -7,6 +7,8 @@
         if($session.user) {
             await firebase.auth().signOut();
             console.log("Te has des-autenticado");
+            $session.user = false;
+            $session.photoURL = null;
         }
     }
 </script>
@@ -50,5 +52,5 @@
 
 <div class="Search">
     <input type="text" placeholder="Busca tu peli...">
-    <img src="{Avatar}" on:click={logout} alt="login" class="{!$session.user ? ''  : 'logged' }">
+    <img src="{$session.photoURL || Avatar}" on:click={logout} alt="login" class="{!$session.user ? ''  : 'logged' }">
 </div>
