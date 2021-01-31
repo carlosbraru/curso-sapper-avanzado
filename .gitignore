@@ -2,5 +2,4 @@
 /node_modules/
 /src/node_modules/@sapper/
 yarn-error.log
-.env
 /__sapper__/
